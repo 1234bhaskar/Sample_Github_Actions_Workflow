@@ -10,7 +10,7 @@ on:
       - main
     types:
       - closed
-
+      - opened
 jobs:
   on_push: #JOB NAME
     if: github.event_name == 'push' #This condition ensures that this job runs only for push events
