@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 name: "Multi event pipeline/workflow"
 
 on:
@@ -40,48 +39,3 @@ jobs:
     steps:
       - name: "Print Hello World on pull request closed"
         run: echo "Hello World on pull request closed event"
-=======
-name: "Multi event pipeline/workflow"
-
-on:
-  push: #Event: whenever there is a push to the repository in main branch, this workflow will be triggered
-    branches:
-      - main
-      - test
-  pull_request: #Event: whenever there is a pull request to the repository in main branch, this workflow will be triggered
-    branches:
-      - main
-    types:
-      - closed
-      - opened
-  schedule: #Event: this workflow will be triggered at 12:00 PM every day
-    - cron: "0 12 * * 2,4" # This cron expression means the workflow will run at 12:00 PM every Tuesday and Thursday. You can adjust the schedule as needed.
-jobs:
-  on_push: #JOB NAME
-    if: github.event_name == 'push' #This condition ensures that this job runs only for push events
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Print Hello World on push"
-        run: echo "Hello World on push event"
-
-  on_pull_request: #JOB NAME
-    if: github.event_name == 'pull_request' #This condition ensures that this job runs only for pull request events
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Print Hello World on pull request"
-        run: echo "Hello World on pull request event"
-
-  on_pull_request_closed: #JOB NAME
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' #This condition ensures that this job runs only for closed pull request events
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Print Hello World on pull request closed"
-        run: echo "Hello World on pull request closed event"
-
-  on_schedule: #JOB NAME
-    if: github.event_name == 'schedule' #This condition ensures that this job runs only for scheduled events
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Print Hello World on schedule"
-        run: echo "Hello World on schedule event"
->>>>>>> Stashed changes
