@@ -8,6 +8,8 @@ on:
   pull_request: #Event: whenever there is a pull request to the repository in main branch, this workflow will be triggered
     branches:
       - main
+    types:
+      - closed
 
 jobs:
   on_push: #JOB NAME
@@ -23,3 +25,10 @@ jobs:
     steps:
       - name: "Print Hello World on pull request"
         run: echo "Hello World on pull request event"
+
+  on_pull_request_closed: #JOB NAME
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' #This condition ensures that this job runs only for closed pull request events
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print Hello World on pull request closed"
+        run: echo "Hello World on pull request closed event"
