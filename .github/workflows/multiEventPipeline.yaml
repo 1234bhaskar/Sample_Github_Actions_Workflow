@@ -1,0 +1,25 @@
+name: "Multi event pipeline/workflow"
+
+on:
+  push: #Event: whenever there is a push to the repository in main branch, this workflow will be triggered
+    branches:
+      - main
+      - test
+  pull_request: #Event: whenever there is a pull request to the repository in main branch, this workflow will be triggered
+    branches:
+      - main
+
+jobs:
+  on_push: #JOB NAME
+    if: github.event_name == 'push' #This condition ensures that this job runs only for push events
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print Hello World on push"
+        run: echo "Hello World on push event"
+
+  on_pull_request: #JOB NAME
+    if: github.event_name == 'pull_request' #This condition ensures that this job runs only for pull request events
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print Hello World on pull request"
+        run: echo "Hello World on pull request event"

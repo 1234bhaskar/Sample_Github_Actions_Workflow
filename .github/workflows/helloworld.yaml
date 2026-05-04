@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - production
+      - "**" # This will trigger the workflow for any branch, you can remove this line if you only want to trigger on specific branches
 
 jobs:
   hello_world:
